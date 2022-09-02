@@ -10,22 +10,28 @@
     try{
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+                // if you're using SSL
+        $mail->SMTPSecure = 'ssl';
+        // OR use TLS
+        $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
         $mail->Port = 587;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->CharSet = 'UTF-8';
+        $mail->Hôte = "ssl://smtp.gmail.com" ;
+        
+        
         $mail->addAddress('raphaelkpogomou@gmail.com');
         $mail->addCC('rkpogomou@gmail.com');
         $mail->addBCC('raphuxvirus21@gmail.com');
-        $mail->Username = 'raphaelkpogomou@gmail.com' ;
-        $mail->Password = 'Dieu67038306';
+        $mail->Username = 'rkpogomou@gmail.com' ;
+        $mail->Password = 'Florent67038306';
 
             
         //$mail->name = $_POST['name'];
         //$mail->email = $_POST['email'];
         $mail->subject = 'Message from contact form';
-        $mail->body = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        $mail->Body = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
          provident id minus voluptatum mollitia at a accusamus aspernatur,
          quos culpa magnam sed nemo animi? A aspernatur soluta quae ducimus dicta.';
 
@@ -34,6 +40,8 @@
 
     } catch(Exception $e){
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        
+        //header('Location: index.php').exit();
     }
 
 
